@@ -1,0 +1,26 @@
+version: 2.1
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/python:3.12
+
+    steps:
+      - checkout
+
+      - run:
+          name: Check Python version
+          command: python --version
+
+      - run:
+          name: Install pytest
+          command: pip install pytest
+
+      - run:
+          name: Run tests
+          command: pytest
+
+workflows:
+  build-test:
+    jobs:
+      - build-and-test
